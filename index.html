@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atraski — Inspiring India</title>
 <meta name="description" content="Atraski is an integrated creative and marketing group: strategy & growth, content studios, live experiences and technology — across Delhi, Kolkata and Mumbai.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta name="theme-color" content="#0b0b0d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Atraski — Inspiring India">
+<meta property="og:description" content="Strategy, content studios, live experiences and technology — one integrated creative and marketing group.">
+<meta property="og:url" content="https://anishdhar-source.github.io/atraskiwebsite/">
+<meta property="og:image" content="https://anishdhar-source.github.io/atraskiwebsite/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -86,6 +95,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:300;op
 .hero-bg img.on{opacity:.8;transform:scale(1)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(11,11,13,.75) 30%,transparent 62%),linear-gradient(180deg,rgba(11,11,13,.4) 0%,transparent 35%,var(--bg) 100%)}
 @media (max-width:760px){.hero-bg img{width:100%;-webkit-mask-image:none;mask-image:none}.hero-bg img.on{opacity:.32}}
+.spot{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(560px circle at var(--mx,72%) var(--my,42%),rgba(236,47,139,.17),transparent 65%)}
+.hero>.wrap{position:relative;z-index:1;width:100%}
 .hero h1{font-size:var(--fs-hero);font-weight:800;letter-spacing:-.045em;line-height:.95}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
 .hero h1 .line>span{display:inline-block;animation:lineUp 1.1s var(--ease) backwards}
@@ -145,7 +156,8 @@ section{padding:clamp(80px,11vw,150px) 0}
 .vert .open{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;font-size:14px;color:var(--c)}
 .vert .open b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--c);color:#0b0b0d;font-size:16px;transition:transform .3s var(--spring)}
 .vert:hover .open b{transform:scale(1.2) rotate(90deg)}
-@media (max-width:860px){.verts{flex-direction:column;height:auto}.vert,.vert.act{flex:none;height:380px}.vert .more{max-height:260px;opacity:1}.vert img{filter:brightness(.55)}.vert h3,.vert:not(.act) h3{font-size:28px;writing-mode:horizontal-tb;transform:none;white-space:normal}}
+.swipe-hint{display:none;margin-top:12px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:860px){.swipe-hint{display:block}.verts{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 6px;scrollbar-width:none}.verts::-webkit-scrollbar{display:none}.vert,.vert.act{flex:0 0 84%;height:440px;scroll-snap-align:center}.vert .more{max-height:260px;opacity:1}.vert img{filter:brightness(.55)}.vert h3,.vert:not(.act) h3{font-size:28px;writing-mode:horizontal-tb;transform:none;white-space:normal}}
 
 /* brands */
 .brands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;perspective:1200px}
@@ -196,6 +208,15 @@ section{padding:clamp(80px,11vw,150px) 0}
 .gallery button:hover img{transform:scale(1.07)}
 .gallery .cap{position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(11,11,13,.78);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px;opacity:0;transform:translateY(8px);transition:.35s var(--ease)}
 .gallery button:hover .cap{opacity:1;transform:none}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{background:none;border:1px solid var(--line);color:var(--ink);padding:9px 16px;border-radius:999px;font:600 14px var(--body);cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .35s var(--spring)}
+.filters button:hover{transform:translateY(-2px);border-color:var(--ink)}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters sup{font-size:10px;opacity:.55;margin-left:3px}
+.gallery button.off{display:none}
+.gallery button.pop{animation:popIn .55s var(--spring)}
+@keyframes popIn{from{opacity:0;transform:scale(.88)}}
 
 /* vision */
 .vision{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:start}
@@ -343,8 +364,12 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
 .opts input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
 .ebox .note{font-size:13px;color:var(--muted)}
 /* lightbox */
-.lbox{width:auto;max-width:min(92vw,900px);background:none;border:0;overflow:visible}
-.lbox img{max-height:86vh;border-radius:18px}
+.lbox{width:auto;max-width:min(92vw,900px);background:none;border:0;overflow:visible;display:grid;gap:14px;justify-items:center}
+.lbox img{max-height:76vh;border-radius:18px;transition:opacity .2s}
+.lbar{display:flex;align-items:center;gap:16px;font-size:14px;color:#ddd}
+.lbar button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(11,11,13,.75);cursor:pointer;font-size:18px;transition:background .25s,transform .35s var(--spring)}
+.lbar button:hover{background:var(--accent);transform:scale(1.08)}
+.lbar b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:21px;color:var(--accent2);margin-right:8px}
 
 /* reveals */
 .rv{opacity:0;transform:translateY(34px) scale(.97);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -383,6 +408,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
     <img src="assets/hero-4.jpg" alt="">
     <img src="assets/hero-3.jpg" alt="">
   </div>
+  <div class="spot" aria-hidden="true"></div>
   <div class="wrap">
     <p class="eyebrow" style="margin-bottom:22px">Integrated creative &amp; marketing group</p>
     <h1>
@@ -449,6 +475,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
           <span class="open"><b>+</b> Explore pillar</span></span></span>
       </button>
     </div>
+    <p class="swipe-hint">Swipe to explore →</p>
   </div>
 </section>
 
@@ -504,15 +531,16 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
       <div><span class="sec-num">03 — WORK</span><h2>A glimpse of the <em class="s">portfolio.</em></h2></div>
       <p>From Studios: product, fashion and campaign work shot, styled and produced in-house. Tap any piece to see it larger.</p>
     </div>
+    <div class="filters rv" id="filters" aria-label="Filter work"><button class="on" data-f="all">All</button><button data-f="campaign">Campaigns</button><button data-f="product">Product</button><button data-f="social">Social</button><button data-f="lifestyle">Lifestyle</button></div>
     <div class="gallery" id="gallery">
-      <button class="rv"><img src="assets/work-1.jpg" alt="Spirits campaign — Happy Hour" loading="lazy"><span class="cap">F&amp;B · Campaign</span></button>
-      <button class="rv"><img src="assets/work-4.jpg" alt="Sneaker product shoot" loading="lazy"><span class="cap">Footwear · Product</span></button>
-      <button class="rv"><img src="assets/work-3.jpg" alt="Skincare campaign" loading="lazy"><span class="cap">Beauty · Campaign</span></button>
-      <button class="rv"><img src="assets/work-2.jpg" alt="Dessert product creative" loading="lazy"><span class="cap">FMCG · Social</span></button>
-      <button class="rv"><img src="assets/work-5.jpg" alt="Footwear lifestyle shoot" loading="lazy"><span class="cap">Fashion · Lifestyle</span></button>
-      <button class="rv"><img src="assets/work-8.jpg" alt="Finance social creative" loading="lazy"><span class="cap">Finance · Social</span></button>
-      <button class="rv"><img src="assets/work-6.jpg" alt="Beauty campaign" loading="lazy"><span class="cap">Beauty · Campaign</span></button>
-      <button class="rv"><img src="assets/work-7.jpg" alt="Body care campaign" loading="lazy"><span class="cap">Beauty · Product</span></button>
+      <button class="rv" data-cat="campaign"><img src="assets/work-1.jpg" alt="Spirits campaign — Happy Hour" loading="lazy"><span class="cap">F&amp;B · Campaign</span></button>
+      <button class="rv" data-cat="product"><img src="assets/work-4.jpg" alt="Sneaker product shoot" loading="lazy"><span class="cap">Footwear · Product</span></button>
+      <button class="rv" data-cat="campaign"><img src="assets/work-3.jpg" alt="Skincare campaign" loading="lazy"><span class="cap">Beauty · Campaign</span></button>
+      <button class="rv" data-cat="social"><img src="assets/work-2.jpg" alt="Dessert product creative" loading="lazy"><span class="cap">FMCG · Social</span></button>
+      <button class="rv" data-cat="lifestyle"><img src="assets/work-5.jpg" alt="Footwear lifestyle shoot" loading="lazy"><span class="cap">Fashion · Lifestyle</span></button>
+      <button class="rv" data-cat="social"><img src="assets/work-8.jpg" alt="Finance social creative" loading="lazy"><span class="cap">Finance · Social</span></button>
+      <button class="rv" data-cat="campaign"><img src="assets/work-6.jpg" alt="Beauty campaign" loading="lazy"><span class="cap">Beauty · Campaign</span></button>
+      <button class="rv" data-cat="product"><img src="assets/work-7.jpg" alt="Body care campaign" loading="lazy"><span class="cap">Beauty · Product</span></button>
     </div>
   </div>
 </section>
@@ -691,7 +719,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
 <!-- Lightbox -->
 <div class="modal" id="lModal" role="dialog" aria-modal="true" aria-label="Enlarged image">
   <div class="scrim" data-close></div>
-  <div class="box lbox"><button class="x" data-close aria-label="Close">✕</button><img id="lImg" alt=""></div>
+  <div class="box lbox"><button class="x" data-close aria-label="Close">✕</button><img id="lImg" alt=""><div class="lbar"><button id="lPrev" aria-label="Previous image">←</button><span><b id="lCap"></b><span id="lCount"></span></span><button id="lNext" aria-label="Next image">→</button></div></div>
 </div>
 
 <script>
@@ -734,6 +762,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
     clearTimeout(timer); if(!reduce) timer=setTimeout(()=>show((cur+1)%4),5000);
   };
   tabs.forEach(t=>t.onclick=()=>show(+t.dataset.i));
+  const mq=$('.marquee .track').getAnimations()[0]; let lastS=scrollY;
+  if(mq&&!reduce){
+    addEventListener('scroll',()=>{const d=scrollY-lastS;lastS=scrollY;if(d)mq.playbackRate=Math.sign(d)*(1+Math.min(6,Math.abs(d)/12))},{passive:true});
+    setInterval(()=>{const r=mq.playbackRate,v=Math.abs(r);if(v>1)mq.playbackRate=Math.sign(r)*Math.max(1,v*.9)},60);
+  }
   show(0,true);
 
   // modal helpers
@@ -831,8 +864,20 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
   addEventListener('scroll',lightUp,{passive:true}); lightUp();
 
   // lightbox
-  const lM=$('#lModal');
-  $$('#gallery button').forEach(b=>b.onclick=()=>{const i=b.querySelector('img');$('#lImg').src=i.src;$('#lImg').alt=i.alt;openM(lM)});
+  const lM=$('#lModal'), gb=$$('#gallery button'); let li=0;
+  const vis=()=>gb.filter(b=>!b.classList.contains('off'));
+  const showL=k=>{const v=vis();li=(k+v.length)%v.length;const b=v[li],i=b.querySelector('img'),L=$('#lImg');
+    L.style.opacity=0;setTimeout(()=>{L.src=i.src;L.alt=i.alt;L.style.opacity=1},120);
+    $('#lCap').textContent=b.querySelector('.cap').textContent;$('#lCount').textContent=`${li+1} / ${v.length}`};
+  gb.forEach(b=>b.onclick=()=>{showL(vis().indexOf(b));openM(lM)});
+  $('#lPrev').onclick=()=>showL(li-1); $('#lNext').onclick=()=>showL(li+1);
+  addEventListener('keydown',e=>{if(!lM.classList.contains('open'))return;if(e.key==='ArrowRight')showL(li+1);if(e.key==='ArrowLeft')showL(li-1)});
+  let tx=null; lM.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  lM.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)showL(li+(d<0?1:-1));tx=null});
+  const fb=$$('#filters button');
+  fb.forEach(f=>{if(f.dataset.f!=='all')f.insertAdjacentHTML('beforeend',`<sup>${gb.filter(b=>b.dataset.cat===f.dataset.f).length}</sup>`);
+    f.onclick=()=>{fb.forEach(x=>x.classList.toggle('on',x===f));
+      gb.forEach(b=>{const on=f.dataset.f==='all'||b.dataset.cat===f.dataset.f;b.classList.toggle('off',!on);if(on){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')}})}});
 
   // pointer effects
   if(fine && !reduce){
@@ -841,6 +886,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
     addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY});
     (function loop(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;cur$.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
     const hov=(sel,label)=>$$(sel).forEach(el=>{el.addEventListener('mouseenter',()=>{ct.textContent=label;cur$.classList.add('big')});el.addEventListener('mouseleave',()=>cur$.classList.remove('big'))});
+    const hero=$('#top');
+    hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')});
     hov('.vert','OPEN'); hov('#gallery button','VIEW'); hov('.brand','VISIT'); hov('.story','READ');
     $$('.magnetic').forEach(b=>{
       b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
