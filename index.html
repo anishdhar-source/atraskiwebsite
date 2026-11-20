@@ -126,7 +126,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:300;op
 .marquee .track span::after{content:"✺";margin-left:44px}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-.featured{display:flex;align-items:center;gap:clamp(18px,4.5vw,64px);flex-wrap:wrap;justify-content:center;padding-top:48px;color:var(--muted)}
+.featured{display:flex;align-items:center;gap:clamp(14px,3vw,44px);flex-wrap:wrap;justify-content:center;padding-top:48px;color:var(--muted)}
 .featured span{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
 .featured strong{font-family:var(--serif);font-size:clamp(22px,2.2vw,30px);font-weight:400;color:var(--ink);opacity:.7;transition:opacity .3s,color .3s}
 .featured strong:hover{opacity:1;color:var(--accent)}
@@ -217,6 +217,25 @@ section{padding:clamp(80px,11vw,150px) 0}
 .gallery button.off{display:none}
 .gallery button.pop{animation:popIn .55s var(--spring)}
 @keyframes popIn{from{opacity:0;transform:scale(.88)}}
+
+.cases-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:clamp(56px,7vw,96px) 0 22px}
+.cases-head h3{font-size:clamp(28px,3vw,44px);letter-spacing:-.035em}
+.cases-head p{color:var(--muted);max-width:420px}
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.cases{grid-template-columns:1fr}}
+.case{border:1px solid var(--line);padding:0;border-radius:var(--r);overflow:hidden;background:var(--bg2);cursor:zoom-in;text-align:left;color:var(--ink);transition:border-color .35s,transform .45s var(--ease),box-shadow .4s}
+.case:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(236,47,139,.6)}
+.case .ci{aspect-ratio:1600/794;overflow:hidden}
+.case img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.case:hover img{transform:scale(1.05)}
+.case .cb{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px}
+.case b{font-family:var(--display);font-size:clamp(19px,1.6vw,23px);letter-spacing:-.02em;display:block}
+.case small{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.case .ext{flex:none}
+.case:hover .ext{background:var(--accent);border-color:var(--accent);transform:rotate(45deg)}
+.team{position:relative;border-radius:calc(var(--r) + 8px);overflow:hidden;margin-bottom:clamp(40px,5vw,72px);aspect-ratio:1600/794}
+.team img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.team:hover img{transform:scale(1.03)}
 
 /* vision */
 .vision{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:start}
@@ -436,7 +455,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
 
 <div class="wrap featured rv">
   <span>As featured in</span>
-  <strong>The Times of India</strong><strong>Hindustan Times</strong><strong>ICC</strong><strong>FICCI</strong>
+  <strong>The Times of India</strong><strong>Hindustan Times</strong><strong>Dainik Jagran</strong><strong>RED FM</strong><strong>afaqs!</strong><strong>ICC</strong><strong>FICCI</strong><strong>TEDx</strong>
 </div>
 
 <section id="pillars">
@@ -542,6 +561,13 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
       <button class="rv" data-cat="campaign"><img src="assets/work-6.jpg" alt="Beauty campaign" loading="lazy"><span class="cap">Beauty · Campaign</span></button>
       <button class="rv" data-cat="product"><img src="assets/work-7.jpg" alt="Body care campaign" loading="lazy"><span class="cap">Beauty · Product</span></button>
     </div>
+    <div class="cases-head rv"><h3>Brands we grow <em class="s">on social.</em></h3><p>Social media work by AT BUZZ, from content calendars to full Instagram identities. Tap a case to see it larger.</p></div>
+    <div class="cases" id="cases">
+      <button class="case rv"><div class="ci"><img src="assets/case-haldirams.jpg" alt="Haldiram's social media work" loading="lazy"></div><div class="cb"><div><small>FMCG</small><b>Haldiram's</b></div><span class="ext">↗</span></div></button>
+      <button class="case rv" style="transition-delay:.06s"><div class="ci"><img src="assets/case-wow.jpg" alt="WOW Skin Science social media work" loading="lazy"></div><div class="cb"><div><small>Skincare</small><b>WOW Skin Science</b></div><span class="ext">↗</span></div></button>
+      <button class="case rv"><div class="ci"><img src="assets/case-kelvinator.jpg" alt="Kelvinator social media work" loading="lazy"></div><div class="cb"><div><small>Home appliances</small><b>Kelvinator</b></div><span class="ext">↗</span></div></button>
+      <button class="case rv" style="transition-delay:.06s"><div class="ci"><img src="assets/case-sereko.jpg" alt="Sereko social media work" loading="lazy"></div><div class="cb"><div><small>Skincare</small><b>Sereko</b></div><span class="ext">↗</span></div></button>
+    </div>
   </div>
 </section>
 
@@ -613,6 +639,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
 </section>
 
 <section id="careers" style="padding-top:0">
+  <div class="wrap"><div class="team rv"><img src="assets/team.jpg" alt="The Atraski team at the office" loading="lazy"><div class="badge"><b>Build something.</b>The people behind the work, 70+ experts across our offices.</div></div></div>
   <div class="wrap careers">
     <div class="rv">
       <span class="sec-num">07 — CAREERS</span>
@@ -864,12 +891,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
   addEventListener('scroll',lightUp,{passive:true}); lightUp();
 
   // lightbox
-  const lM=$('#lModal'), gb=$$('#gallery button'); let li=0;
-  const vis=()=>gb.filter(b=>!b.classList.contains('off'));
+  const lM=$('#lModal'), gb=$$('#gallery button'), cb=$$('#cases .case'); let li=0, set=gb;
+  const vis=()=>set===gb?gb.filter(b=>!b.classList.contains('off')):set;
+  const capOf=b=>b.querySelector('.cap')?b.querySelector('.cap').textContent:b.querySelector('b').textContent+' · '+b.querySelector('small').textContent;
   const showL=k=>{const v=vis();li=(k+v.length)%v.length;const b=v[li],i=b.querySelector('img'),L=$('#lImg');
     L.style.opacity=0;setTimeout(()=>{L.src=i.src;L.alt=i.alt;L.style.opacity=1},120);
-    $('#lCap').textContent=b.querySelector('.cap').textContent;$('#lCount').textContent=`${li+1} / ${v.length}`};
-  gb.forEach(b=>b.onclick=()=>{showL(vis().indexOf(b));openM(lM)});
+    $('#lCap').textContent=capOf(b);$('#lCount').textContent=`${li+1} / ${v.length}`};
+  gb.forEach(b=>b.onclick=()=>{set=gb;showL(vis().indexOf(b));openM(lM)});
+  cb.forEach(b=>b.onclick=()=>{set=cb;showL(cb.indexOf(b));openM(lM)});
   $('#lPrev').onclick=()=>showL(li-1); $('#lNext').onclick=()=>showL(li+1);
   addEventListener('keydown',e=>{if(!lM.classList.contains('open'))return;if(e.key==='ArrowRight')showL(li+1);if(e.key==='ArrowLeft')showL(li-1)});
   let tx=null; lM.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
@@ -888,7 +917,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 32px}
     const hov=(sel,label)=>$$(sel).forEach(el=>{el.addEventListener('mouseenter',()=>{ct.textContent=label;cur$.classList.add('big')});el.addEventListener('mouseleave',()=>cur$.classList.remove('big'))});
     const hero=$('#top');
     hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')});
-    hov('.vert','OPEN'); hov('#gallery button','VIEW'); hov('.brand','VISIT'); hov('.story','READ');
+    hov('.vert','OPEN'); hov('#gallery button','VIEW'); hov('#cases .case','VIEW'); hov('.brand','VISIT'); hov('.story','READ');
     $$('.magnetic').forEach(b=>{
       b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
       b.addEventListener('mouseleave',()=>b.style.transform='');
